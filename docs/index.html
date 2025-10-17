@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DRAGON GAME</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="../public/css/main.css"> 
+</head>
+
+<body class="dbz-bg-seleccion"> <div class="container py-1 text-center text-light">
+    <h1 class="dbz-title">DRAGON GAME</h1>
+    <hr class="border-warning border-3 my-1"> 
+
+    <div class="row justify-content-center d-none mt-2" id="historial_vd">
+      <div class="col-md-8 dbz-historial-card p-2">
+        <div class="d-flex justify-content-between align-items-center mb-1">
+            <h3 class="fs-5 mb-0 dbz-historial-title">HISTORIAL DE COMBATE (V/D)</h3>
+            <button id="btn_borrar_historial" class="dbz-action-btn btn-danger btn-sm">🗑️ BORRAR</button>
+        </div>
+        <div class="row row-cols-2 g-2 text-start" id="historial_contenido">
+          <p class="col-12 text-center small text-muted mb-0">No hay partidas registradas.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row justify-content-around mt-1" id="seleccion_jugadores">
+
+      <div class="col-md-5 p-1 dbz-card" id="jugador1">
+        <h3 class="text-warning fs-6 mb-1">Jugador 1</h3>
+        <input type="text" id="username_py1" class="form-control mb-1 form-control-sm text-center" placeholder="Nombre del Guerrero Z">
+
+        <div class="row row-cols-auto g-1 justify-content-center" id="seleccion_personaje_py1">
+          <div class="col p-0"> 
+            <button class="btn dbz-btn rounded-circle personaje-btn" data-player="1" data-id="01" data-nombre="Veguito">
+              <img src="./public/img/seleccion/01.png" alt="Veguito" class="img-fluid" title="Veguito">
+            </button>
+          </div>
+          <div class="col p-0">
+            <button class="btn dbz-btn rounded-circle personaje-btn" data-player="1" data-id="03" data-nombre="Trunks">
+              <img src="./public/img/seleccion/03.png" alt="Trunks" class="img-fluid" title="Trunks">
+            </button>
+          </div>
+          <div class="col p-0">
+            <button class="btn dbz-btn rounded-circle personaje-btn" data-player="1" data-id="05" data-nombre="Goku">
+              <img src="./public/img/seleccion/05.png" alt="Goku" class="img-fluid" title="Goku">
+            </button>
+          </div>
+          <div class="col p-0">
+            <button class="btn dbz-btn rounded-circle personaje-btn" data-player="1" data-id="06" data-nombre="Gohan">
+              <img src="./public/img/seleccion/06.png" alt="Gohan" class="img-fluid" title="Gohan">
+            </button>
+          </div>
+          <div class="col p-0">
+            <button class="btn dbz-btn rounded-circle personaje-btn" data-player="1" data-id="09" data-nombre="VeguitoMega">
+              <img src="./public/img/seleccion/09.png" alt="VeguitoMega" class="img-fluid" title="VeguitoMega">
+            </button>
+          </div>
+        </div>
+        <button id="btn_py1" class="btn btn-warning w-100 mt-1 fw-bold btn-sm" disabled>¡Aceptar!</button>
+      </div>
+
+      <div class="col-md-5 p-1 dbz-card" id="jugador2">
+        <h3 class="text-info fs-6 mb-1">Jugador 2</h3>
+        <input type="text" id="username_py2" class="form-control mb-1 form-control-sm text-center" placeholder="Nombre del Guerrero Z">
+
+        <div class="row row-cols-auto g-1 justify-content-center" id="seleccion_personaje_py2">
+          <div class="col p-0">
+            <button class="btn dbz-btn rounded-circle personaje-btn" data-player="2" data-id="02" data-nombre="Veguetta">
+              <img src="./public/img/seleccion/02.png" alt="Veguetta" class="img-fluid" title="Veguetta">
+            </button>
+          </div>
+          <div class="col p-0">
+            <button class="btn dbz-btn rounded-circle personaje-btn" data-player="2" data-id="04" data-nombre="Pikoro">
+              <img src="./public/img/seleccion/04.png" alt="Pikoro" class="img-fluid" title="Pikoro">
+            </button>
+          </div>
+          <div class="col p-0">
+            <button class="btn dbz-btn rounded-circle personaje-btn" data-player="2" data-id="07" data-nombre="Gogueta">
+              <img src="./public/img/seleccion/07.png" alt="Gogueta" class="img-fluid" title="Gogueta">
+            </button>
+          </div>
+          <div class="col p-0">
+            <button class="btn dbz-btn rounded-circle personaje-btn" data-player="2" data-id="08" data-nombre="Cell">
+              <img src="./public/img/seleccion/08.png" alt="Cell" class="img-fluid" title="Cell">
+            </button>
+          </div>
+           <div class="col p-0">
+            <button class="btn dbz-btn rounded-circle personaje-btn" data-player="2" data-id="10" data-nombre="GokuAF">
+              <img src="./public/img/seleccion/10.png" alt="GokuAF" class="img-fluid" title="GokuAF">
+            </button>
+          </div>
+        </div>
+        <button id="btn_py2" class="btn btn-warning w-100 mt-1 fw-bold btn-sm" disabled>¡Aceptar!</button>
+      </div>
+    </div>
+    <div class="row justify-content-center align-items-center d-none mt-1" id="batalla">
+
+      <div class="col-md-5 d-flex flex-column align-items-center p-1">
+        <h2 id="nombre_personaje1" class="text-warning fs-5 mb-1"></h2>
+        <p id="username1" class="mb-0 small"></p>
+        <hr class="border-warning w-100 my-1">
+
+        <div class="w-75 mb-1 text-start mx-auto">
+          <p class="mb-0 fw-bold text-success small">Vida</p>
+          <div class="progress mb-1">
+            <div id="vida1" class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 100%;">100</div>
+          </div>
+
+          <p class="mb-0 fw-bold text-primary small">Ki</p>
+          <div class="progress mb-1">
+            <div id="ki1" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" style="width: 100%;">100</div>
+          </div>
+
+          <p class="mb-0 fw-bold text-info small">Energía</p>
+          <div class="progress mb-1">
+            <div id="energia1" class="progress-bar progress-bar-striped progress-bar-animated bg-info" style="width: 100%;">100</div>
+          </div>
+        </div>
+
+        <img src="" alt="" id="img_personaje1" class="img-fluid mb-1"> 
+
+        <div class="row row-cols-2 g-1 w-100">
+          <div class="col">
+            <button id="btn_atk_basico1" class="btn btn-warning fw-bold w-100 dbz-action-btn" disabled>Ataque Básico</button>
+          </div>
+          <div class="col">
+            <button id="btn_atk_especial1" class="btn btn-primary fw-bold w-100 dbz-action-btn" disabled>Ataque Especial ⚡</button>
+          </div>
+          <div class="col">
+            <button id="btn_cargar_ki1" class="btn btn-success fw-bold w-100 dbz-action-btn" disabled>Cargar Ki 🔋</button>
+          </div>
+          <div class="col">
+            <button id="btn_semilla1" class="btn btn-success fw-bold w-100 dbz-action-btn" disabled>Semilla del Ermitaño 🌱</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-2 d-flex justify-content-center align-items-center p-0">
+        <h2 class="text-center display-6 text-light fw-bold">VS</h2>
+      </div>
+
+      <div class="col-md-5 d-flex flex-column align-items-center p-1">
+        <h2 id="nombre_personaje2" class="text-info fs-5 mb-1"></h2>
+        <p id="username2" class="mb-0 small"></p>
+        <hr class="border-info w-100 my-1">
+
+        <div class="w-75 mb-1 text-start mx-auto">
+          <p class="mb-0 fw-bold text-success small">Vida</p>
+          <div class="progress mb-1">
+            <div id="vida2" class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 100%;">100</div>
+          </div>
+
+          <p class="mb-0 fw-bold text-primary small">Ki</p>
+          <div class="progress mb-1">
+            <div id="ki2" class="progress-bar progress-bar-striped progress-bar-animated bg-primary" style="width: 100%;">100</div>
+          </div>
+
+          <p class="mb-0 fw-bold text-info small">Energía</p>
+          <div class="progress mb-1">
+            <div id="energia2" class="progress-bar progress-bar-striped progress-bar-animated bg-info" style="width: 100%;">100</div>
+          </div>
+        </div>
+
+        <img src="" alt="" id="img_personaje2" class="img-fluid mb-1">
+
+        <div class="row row-cols-2 g-1 w-100">
+          <div class="col">
+            <button id="btn_atk_basico2" class="btn btn-warning fw-bold w-100 dbz-action-btn" disabled>Ataque Básico</button>
+          </div>
+          <div class="col">
+            <button id="btn_atk_especial2" class="btn btn-primary fw-bold w-100 dbz-action-btn" disabled>Ataque Especial ⚡</button>
+          </div>
+          <div class="col">
+            <button id="btn_cargar_ki2" class="btn btn-success fw-bold w-100 dbz-action-btn" disabled>Cargar Ki 🔋</button>
+          </div>
+          <div class="col">
+            <button id="btn_semilla2" class="btn btn-success fw-bold w-100 dbz-action-btn" disabled>Semilla del Ermitaño 🌱</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+  <script src="./bundle.js"></script> 
+</body>
+
+</html>
